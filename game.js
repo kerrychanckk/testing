@@ -5,7 +5,7 @@ let gameOver = false;
 let gameStarted = false;
 
 function setup() {
-  createCanvas(1200, 800);  // Increased height to accommodate the score
+  createCanvas(1000, 700);  // Increased width and height
   bird = new Bird();
   reset();
 }
@@ -42,11 +42,11 @@ function draw() {
 
   // Draw score with a background for better visibility
   fill(255, 255, 255, 200);
-  rect(10, 10, 160, 50, 10);
+  rect(20, 20, 200, 60, 10);
   fill(0);
   textAlign(LEFT, TOP);
   textSize(32);
-  text('Score: ' + score, 20, 20);
+  text('Score: ' + score, 30, 35);
 
   if (gameOver) {
     textAlign(CENTER);
@@ -79,7 +79,7 @@ function reset() {
 class Bird {
   constructor() {
     this.y = height/2;
-    this.x = 100;
+    this.x = 150;  // Moved further right
     this.gravity = 0.4;
     this.lift = -10;
     this.velocity = 0;
@@ -120,11 +120,11 @@ class Bird {
 
 class Pipe {
   constructor() {
-    this.spacing = 175;
-    this.top = random(height / 6, 3 / 4 * height);
+    this.spacing = 200;  // Increased spacing
+    this.top = random(height / 6, 2 / 3 * height);
     this.bottom = height - (this.top + this.spacing);
     this.x = width;
-    this.w = 80;
+    this.w = 100;  // Increased width
     this.speed = 1.5;
   }
 
@@ -136,8 +136,8 @@ class Pipe {
   drawBrickPipe(x, y, w, h) {
     push();
     translate(x, y);
-    let brickWidth = 20;
-    let brickHeight = 10;
+    let brickWidth = 25;
+    let brickHeight = 12;
     for (let i = 0; i < h; i += brickHeight) {
       for (let j = 0; j < w; j += brickWidth) {
         fill(139, 69, 19);
@@ -161,7 +161,4 @@ class Pipe {
 
   hits(bird) {
     let box = bird.getBoundingBox();
-    return (box.left < this.x + this.w && box.right > this.x &&
-           (box.top < this.top || box.bottom > height - this.bottom));
-  }
-}
+    return (box.
