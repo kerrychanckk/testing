@@ -5,7 +5,7 @@ let gameOver = false;
 let gameStarted = false;
 
 function setup() {
-  createCanvas(400, 600);
+  createCanvas(800, 650);  // Increased height to accommodate the score
   bird = new Bird();
   reset();
 }
@@ -36,16 +36,21 @@ function draw() {
   bird.show();
   bird.update();
 
-  if (frameCount % 100 == 0) {
+  if (frameCount % 120 == 0) {
     pipes.push(new Pipe());
   }
 
+  // Draw score with a background for better visibility
+  fill(255, 255, 255, 200);
+  rect(10, 10, 160, 50, 10);
   fill(0);
+  textAlign(LEFT, TOP);
   textSize(32);
-  text('Score: ' + score, 10, 40);
+  text('Score: ' + score, 20, 20);
 
   if (gameOver) {
     textAlign(CENTER);
+    fill(0);
     text('Game Over', width/2, height/2);
     text('Press SPACE to restart', width/2, height/2 + 40);
   }
@@ -74,11 +79,11 @@ function reset() {
 class Bird {
   constructor() {
     this.y = height/2;
-    this.x = 64;
-    this.gravity = 0.6;
-    this.lift = -15;
+    this.x = 100;
+    this.gravity = 0.4;
+    this.lift = -10;
     this.velocity = 0;
-    this.size = 20;
+    this.size = 40;
   }
 
   show() {
@@ -115,12 +120,12 @@ class Bird {
 
 class Pipe {
   constructor() {
-    this.spacing = 125;
+    this.spacing = 175;
     this.top = random(height / 6, 3 / 4 * height);
     this.bottom = height - (this.top + this.spacing);
     this.x = width;
     this.w = 80;
-    this.speed = 2;
+    this.speed = 1.5;
   }
 
   show() {
