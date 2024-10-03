@@ -5,7 +5,7 @@ let gameOver = false;
 let gameStarted = false;
 
 function setup() {
-  createCanvas(800, 650);  // Increased height to accommodate the score
+  createCanvas(1200, 650);  // Increased height to accommodate the score
   bird = new Bird();
   reset();
 }
